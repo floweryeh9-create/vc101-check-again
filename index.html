@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower | High-End AI & Business Strategy Consultant</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Flower helps businesses transform knowledge, workflows, and customer experience through practical AI Marketing solutions.">
+    <meta name="keywords" content="AI Consultant, Business Strategy, Supply Chain, Marketing Automation, Global Business">
+    
+    <!-- Google Fonts: Inter (Body) & Poppins (Headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Premium Minimalist Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ty8E2+5O7fT5Q/oe1x3Q0dWjE4+F5FQ1dA0lPz4nM8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0077C8',   // 工研院主色
+                        secondary: '#00B5A5', // 輔助色
+                        accent: '#FFB618',    // 強調色
+                        background: '#FFFFFF',
+                        surface: '#F4F4F4',
+                        neutral: {
+                            DEFAULT: '#333333',
+                            light: '#666666',
+                            lighter: '#F4F4F4',
+                            border: '#E5E7EB',
+                        },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'ai-grid': `linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px)`,
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Premium CSS -->
+    <style>
+        /* Base & Scrollbar */
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Premium Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(241, 245, 249, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.08);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        /* Ambient Glows */
+        .glow-bg {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse-slow 8s infinite alternate;
+        }
+        .glow-blue { background: rgba(37, 99, 235, 0.15); }
+        .glow-purple { background: rgba(124, 58, 237, 0.15); }
+
+        /* Grid Background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+
+        /* Hero Video Background */
+        .hero-video-frame {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            object-fit: cover;
+            transform: scale(1.03);
+            filter: saturate(1.05) contrast(1.02);
+            pointer-events: none;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(120deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.30)),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.45));
+            z-index: 1;
+        }
+
+        .hero-content-panel {
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.22);
+        }
+
+        /* Typewriter Cursor */
+        .cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #2563eb;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-blur {
+            opacity: 0;
+            filter: blur(10px);
+            transform: scale(0.95);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* Timeline specific */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 15px;
+            width: 2px;
+            background: linear-gradient(to bottom, #2563eb 0%, #7c3aed 100%);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* Progress Bars */
+        .progress-bar-fill {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary/20 selection:text-primary">
+
+    <!-- Sticky Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="glass-panel rounded-2xl px-6 py-3 flex items-center justify-between">
+                <a href="#" class="font-display font-bold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+                    <i class="ph-fill ph-flower-lotus text-primary text-2xl"></i>
+                    Flower.
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                    <a href="#about" class="hover:text-primary transition-colors">About</a>
+                    <a href="#solutions" class="hover:text-primary transition-colors">AI Solutions</a>
+                    <a href="#experience" class="hover:text-primary transition-colors">Experience</a>
+                    <a href="#cases" class="hover:text-primary transition-colors">Case Studies</a>
+                    <a href="#skills" class="hover:text-primary transition-colors">Expertise</a>
+                </div>
+
+                <div class="hidden md:block">
+                    <a href="#contact" class="px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gray-900 hover:bg-primary transition-colors shadow-lg shadow-gray-900/20">
+                        Let's Talk
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <iframe
+                class="hero-video-frame"
+                src="https://www.youtube-nocookie.com/embed/i-gmUH_d_8w?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&loop=1&playlist=i-gmUH_d_8w"
+                title="Hero background video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                aria-hidden="true">
+            </iframe>
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- Grid & Glows -->
+        <div class="absolute inset-0 bg-ai-grid bg-grid-pattern z-0"></div>
+        <div class="glow-bg glow-blue w-[600px] h-[600px] top-[-10%] left-[-10%]"></div>
+        <div class="glow-bg glow-purple w-[500px] h-[500px] bottom-[10%] right-[-5%]"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div class="max-w-4xl mx-auto text-center reveal-blur">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-sm font-medium text-primary mb-8 border border-primary/10 shadow-sm animate-float">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Premium AI Strategy Consultant
+                </div>
+
+                <div class="hero-content-panel rounded-[28px] px-8 py-10 md:px-10 md:py-12">
+                    <h1 class="text-5xl md:text-7xl font-display font-bold text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                        <span id="typewriter" class="cursor text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-600"></span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-12 max-w-2xl mx-auto font-light">
+                        Flower helps visionary businesses transform knowledge, workflows, and customer experiences through highly practical, data-driven AI Marketing solutions.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#contact" class="group relative overflow-hidden rounded-full bg-white/90 backdrop-blur-md border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)] hover:border-accent/50 transition-all duration-500 flex items-center justify-center px-8 py-4 w-full sm:w-[280px]">
+                            <span class="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+
+                            <span class="relative flex items-center gap-2 group-hover:opacity-0 group-hover:-translate-y-4 transition-all duration-400 font-semibold text-gray-800">
+                                Book Consultation
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </span>
+
+                            <span class="absolute flex items-center gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 font-semibold text-accent">
+                                <span class="relative flex h-2.5 w-2.5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent"></span>
+                                </span>
+                                Status: Ready to Connect
+                            </span>
+                        </a>
+
+                        <a href="#solutions" class="px-8 py-4 rounded-full text-gray-100 font-semibold hover:text-white transition-colors flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm">
+                            Explore Solutions
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 mx-auto max-w-5xl relative h-64 reveal-up perspective-1000">
+                <div class="absolute inset-0 rounded-2xl border border-white/50 bg-white/30 backdrop-blur-xl shadow-2xl overflow-hidden transform rotateX-12 scale-105" style="transform: perspective(1000px) rotateX(5deg);">
+                    <div class="h-12 border-b border-white/40 flex items-center px-6 gap-2 bg-white/40">
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                    </div>
+                    <div class="p-8 grid grid-cols-3 gap-6 opacity-60">
+                        <div class="h-24 rounded-lg bg-gradient-to-br from-primary/10 to-transparent border border-white"></div>
+                        <div class="h-24 rounded-lg bg-gradient-to-br from-secondary/10 to-transparent border border-white col-span-2"></div>
+                        <div class="h-32 rounded-lg bg-gradient-to-br from-gray-100 to-transparent border border-white col-span-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative z-10 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-up">
+                    <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-3">About Flower</h2>
+                    <h3 class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6">Bridging Global Operations with AI Innovation.</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 text-lg">
+                        Not just an AI enthusiast, but a seasoned business strategist. With over <strong class="text-gray-900">20 years of cross-cultural leadership</strong> and Fortune 500 experience, I integrate deep industry knowledge with cutting-edge AI technologies.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        My expertise spans the mechanical and electronic industries, global supply chain optimization, and strategic negotiation. I don't just build AI tools; I build <strong class="text-gray-900">scalable, AI-driven business architectures</strong> that drive tangible ROI and market expansion.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-10">
+                        <div class="glass-card p-6 rounded-xl border-l-4 border-l-primary">
+                            <div class="text-3xl font-display font-bold text-gray-900 counter" data-target="20">+</div>
+                            <div class="text-sm font-medium text-gray-500 mt-1">Years Experience</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl border-l-4 border-l-secondary">
+                            <div class="text-3xl font-display font-bold text-gray-900">Global</div>
+                            <div class="text-sm font-medium text-gray-500 mt-1">Supply Chain Expertise</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modern Info Cards -->
+                <div class="relative reveal-blur">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-secondary/5 rounded-3xl transform rotate-3"></div>
+                    <div class="glass-panel p-8 rounded-3xl relative">
+                        <h4 class="font-display font-semibold text-xl mb-6 text-gray-900 flex items-center gap-2">
+                            <i class="ph-fill ph-target text-primary"></i> Executive Capabilities
+                        </h4>
+                        <ul class="space-y-5">
+                            <li class="flex items-start gap-4 group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i class="ph ph-buildings text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-900">Fortune 500 Experience</h5>
+                                    <p class="text-sm text-gray-500 mt-1">Navigating complex corporate structures and delivering high-stakes projects.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 group">
+                                <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i class="ph ph-handshake text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-900">Strategic Negotiation</h5>
+                                    <p class="text-sm text-gray-500 mt-1">Securing enterprise partnerships and cross-border business development.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 group">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i class="ph ph-cpu text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-900">AI + Business Integration</h5>
+                                    <p class="text-sm text-gray-500 mt-1">Transforming mechanical & electronic manufacturing with AI intelligence.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Story & Project Showcase -->
+    <section class="py-24 relative bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal-up">
+                <p class="text-sm font-bold tracking-widest text-primary uppercase mb-3">Personal Story</p>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">我的形象與實務現場</h2>
+                <p class="text-gray-600 text-lg">透過個人頭像與內訓、專案現場，讓訪客更快速懂得你的專業定位與實戰經驗。</p>
+            </div>
+
+            <div class="grid lg:grid-cols-[1.05fr_1.35fr] gap-8 items-stretch">
+                <div class="glass-panel rounded-[28px] p-6 reveal-up">
+                    <div class="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-primary/10 to-secondary/10 p-4 h-full">
+                        <img src="mywork/avatar_new.jpg" alt="本人形象" class="w-full h-[420px] object-cover rounded-[20px] shadow-lg">
+                        <div class="absolute inset-x-6 bottom-6 rounded-2xl bg-white/90 backdrop-blur px-4 py-3 shadow-lg">
+                            <p class="text-sm font-semibold text-primary">本人形象</p>
+                            <p class="text-sm text-gray-700 mt-1">這張照片適合放在 About 附近，建立專業信任感與個人品牌辨識。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-card rounded-[24px] p-6 reveal-up">
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold">個人形象</span>
+                            <span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-semibold">內訓現場</span>
+                            <span class="px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-semibold">專案展演</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-gray-900 mb-3">把人的專業感與場域經驗一起呈現</h3>
+                        <p class="text-gray-600 leading-relaxed">右側用更大的視覺區塊展示你的內訓與專案現場，能讓訪客更信任你有真實落地經驗，而不是只停留在文字描述。</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="glass-panel rounded-[24px] p-4 reveal-up">
+                            <img src="mywork/台灣 Top3 IC設計-expo-stage-02.jpg" alt="台灣 Top3 IC 設計展演舞台" class="w-full h-48 object-cover rounded-[18px] mb-3">
+                            <p class="text-sm font-semibold text-gray-900">台灣 Top3 IC 設計 Expo</p>
+                            <p class="text-sm text-gray-500">公開展演與對外溝通場域。</p>
+                        </div>
+                        <div class="glass-panel rounded-[24px] p-4 reveal-up">
+                            <img src="mywork/國科會-expo-stage-01.jpg" alt="國科會展演舞台" class="w-full h-48 object-cover rounded-[18px] mb-3">
+                            <p class="text-sm font-semibold text-gray-900">國科會展演</p>
+                            <p class="text-sm text-gray-500">專案成果與研究展示現場。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training & Project Gallery -->
+    <section class="py-8 relative bg-surface">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
+                <div>
+                    <p class="text-sm font-bold tracking-widest text-primary uppercase mb-3">Training & Projects</p>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900">內訓與專案場景展演</h2>
+                </div>
+                <p class="max-w-2xl text-gray-600">把各類內訓、專案與公開展演畫面整理成 gallery，讓你的經驗更具證據感與故事性。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div class="glass-panel rounded-[24px] overflow-hidden reveal-up">
+                    <img src="mywork/台灣 Top3 航空業-training-classroom-04.png" alt="航空業內訓教室" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <p class="text-sm font-semibold text-primary mb-1">航空業內訓</p>
+                        <p class="text-sm text-gray-600">不同產業客戶共同參與的培訓現場。</p>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-[24px] overflow-hidden reveal-up">
+                    <img src="mywork/台灣 Top3 電信業-training-classroom-01.png" alt="電信業內訓教室" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <p class="text-sm font-semibold text-primary mb-1">電信業內訓</p>
+                        <p class="text-sm text-gray-600">跨部門協作與實務導入的教學情境。</p>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-[24px] overflow-hidden reveal-up">
+                    <img src="mywork/工研院-training-classroom-02.png" alt="工研院內訓課堂" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <p class="text-sm font-semibold text-primary mb-1">工研院內訓</p>
+                        <p class="text-sm text-gray-600">技術推廣與課程設計現場。</p>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-[24px] overflow-hidden reveal-up">
+                    <img src="mywork/資策會-training-classroom-03.png" alt="資策會內訓課堂" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <p class="text-sm font-semibold text-primary mb-1">資策會內訓</p>
+                        <p class="text-sm text-gray-600">高階課程與講師訓練的現場紀錄。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Solutions Section (SaaS Style) -->
+    <section id="solutions" class="py-32 relative bg-white">
+        <!-- Abstract Background -->
+        <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        <div class="glow-bg glow-purple w-[600px] h-[600px] top-[20%] right-[-10%] opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
+                <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-3">Enterprise Capabilities</h2>
+                <h3 class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6">Premium AI Solutions</h3>
+                <p class="text-gray-600 text-lg">Architecting intelligent systems that empower teams, streamline supply chains, and unlock new market potentials.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Solution Cards -->
+                <script>
+                    const solutions = [
+                        { icon: 'ph-database', color: 'text-blue-500', bg: 'bg-blue-50', title: 'AI Knowledge Base', desc: 'Centralize enterprise intelligence for instant retrieval and onboarding.' },
+                        { icon: 'ph-git-branch', color: 'text-purple-500', bg: 'bg-purple-50', title: 'Workflow Automation', desc: 'Eliminate redundant tasks with intelligent agent-based architectures.' },
+                        { icon: 'ph-users-three', color: 'text-emerald-500', bg: 'bg-emerald-50', title: 'AI Team Building', desc: 'Train and restructure teams to seamlessly collaborate with AI systems.' },
+                        { icon: 'ph-truck', color: 'text-orange-500', bg: 'bg-orange-50', title: 'Supply Chain Strategy', desc: 'Predictive analytics and optimization for global mechanical/electronic logistics.' },
+                        { icon: 'ph-handshake', color: 'text-indigo-500', bg: 'bg-indigo-50', title: 'Negotiation Strategy', desc: 'Data-backed negotiation frameworks for high-stakes enterprise deals.' },
+                        { icon: 'ph-funnel', color: 'text-rose-500', bg: 'bg-rose-50', title: 'Marketing Funnel', desc: 'Automated, hyper-personalized customer journeys driven by ML models.' },
+                        { icon: 'ph-chart-line-up', color: 'text-cyan-500', bg: 'bg-cyan-50', title: 'Market Intelligence', desc: 'Real-time competitive analysis and trend forecasting tools.' },
+                        { icon: 'ph-globe-hemisphere-east', color: 'text-amber-500', bg: 'bg-amber-50', title: 'Business Expansion', desc: 'Strategic roadmaps for cross-cultural market penetration.' },
+                    ];
+
+                    solutions.forEach((s, index) => {
+                        document.write(`
+                            <div class="glass-card p-8 rounded-2xl reveal-up" style="transition-delay: ${index * 50}ms">
+                                <div class="w-12 h-12 rounded-xl ${s.bg} ${s.color} flex items-center justify-center mb-6">
+                                    <i class="ph ${s.icon} text-2xl"></i>
+                                </div>
+                                <h4 class="font-display font-semibold text-gray-900 mb-3">${s.title}</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">${s.desc}</p>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Case Studies (Dashboard UI Style) -->
+    <section id="cases" class="py-32 relative bg-surface overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-16">
+                
+                <!-- Left: Experience Timeline -->
+                <div class="lg:col-span-4 reveal-up">
+                    <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-3">Track Record</h2>
+                    <h3 class="text-3xl font-display font-bold text-gray-900 mb-10">Professional<br>Timeline</h3>
+                    
+                    <div class="relative timeline-line space-y-10">
+                        <!-- Node 1 -->
+                        <div class="relative pl-10">
+                            <div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-white shadow-sm"></div>
+                            <div class="text-xs font-bold text-primary mb-1">Present</div>
+                            <h4 class="font-semibold text-gray-900">AI Strategy Consultant</h4>
+                            <p class="text-sm text-gray-500 mt-1">Independent Premium Consulting</p>
+                        </div>
+                        <!-- Node 2 -->
+                        <div class="relative pl-10">
+                            <div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-gray-300 ring-4 ring-surface"></div>
+                            <div class="text-xs font-bold text-gray-500 mb-1">Previous</div>
+                            <h4 class="font-semibold text-gray-900">Global Supply Chain Lead</h4>
+                            <p class="text-sm text-gray-500 mt-1">Fortune 500 Tech Manufacturer</p>
+                        </div>
+                        <!-- Node 3 -->
+                        <div class="relative pl-10">
+                            <div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-gray-300 ring-4 ring-surface"></div>
+                            <div class="text-xs font-bold text-gray-500 mb-1">Early Career</div>
+                            <h4 class="font-semibold text-gray-900">Business Dev. Director</h4>
+                            <p class="text-sm text-gray-500 mt-1">Mechanical & Electronic Sector</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Case Studies (McKinsey/Stripe Vibe) -->
+                <div class="lg:col-span-8 space-y-6">
+                    <h3 class="text-3xl font-display font-bold text-gray-900 mb-10 hidden lg:block">Impact & Case Studies</h3>
+                    
+                    <!-- Case Card 1 -->
+                    <div class="glass-panel p-8 rounded-2xl reveal-up group hover:border-primary/30 transition-colors">
+                        <div class="flex flex-col md:flex-row justify-between gap-8">
+                            <div class="flex-1">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 text-blue-600 text-xs font-semibold mb-4">
+                                    AI Workflow Optimization
+                                </div>
+                                <h4 class="text-xl font-display font-semibold text-gray-900 mb-2">Automated Knowledge Management System</h4>
+                                <p class="text-sm text-gray-600 mb-6">Implemented a centralized AI agent architecture for a global electronics firm, reducing onboarding time and documentation retrieval.</p>
+                                <a href="#" class="text-sm font-medium text-primary group-hover:underline flex items-center gap-1">View Full Report <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
+                            <div class="md:w-48 shrink-0 bg-gray-50 rounded-xl p-5 border border-gray-100 flex flex-col justify-center relative overflow-hidden">
+                                <!-- Abstract graph line -->
+                                <svg class="absolute bottom-0 left-0 w-full h-1/2 text-emerald-100" preserveAspectRatio="none" viewBox="0 0 100 50">
+                                    <path d="M0,50 L0,30 C20,40 30,10 50,20 C70,30 80,5 100,0 L100,50 Z" fill="currentColor"/>
+                                </svg>
+                                <div class="relative z-10">
+                                    <div class="text-sm text-gray-500 mb-1">Efficiency Gain</div>
+                                    <div class="text-3xl font-display font-bold text-emerald-600">+340%</div>
+                                    <div class="text-xs text-gray-400 mt-1">vs Previous Quarter</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Card 2 -->
+                    <div class="glass-panel p-8 rounded-2xl reveal-up group hover:border-secondary/30 transition-colors delay-100">
+                        <div class="flex flex-col md:flex-row justify-between gap-8">
+                            <div class="flex-1">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-50 text-purple-600 text-xs font-semibold mb-4">
+                                    Supply Chain Transformation
+                                </div>
+                                <h4 class="text-xl font-display font-semibold text-gray-900 mb-2">Predictive Logistics & Negotiation</h4>
+                                <p class="text-sm text-gray-600 mb-6">Combined data-driven predictive modeling with cross-cultural negotiation tactics to restructure supplier contracts.</p>
+                                <a href="#" class="text-sm font-medium text-secondary group-hover:underline flex items-center gap-1">View Full Report <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
+                            <div class="md:w-48 shrink-0 bg-gray-50 rounded-xl p-5 border border-gray-100 flex flex-col justify-center relative overflow-hidden">
+                                <div class="relative z-10">
+                                    <div class="text-sm text-gray-500 mb-1">Cost Reduction</div>
+                                    <div class="text-3xl font-display font-bold text-gray-900">-42%</div>
+                                    <div class="text-xs text-gray-400 mt-1">Annual Procurement</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Expertise Section -->
+    <section id="skills" class="py-32 relative bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
+                <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-3">Core Competencies</h2>
+                <h3 class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6">Data & Business Intelligence</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Exec Metrics (Progress bars) -->
+                <div class="space-y-8 reveal-up">
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-900">AI Strategy & Automation</span>
+                            <span class="text-primary">95%</span>
+                        </div>
+                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="progress-bar-fill h-full bg-gradient-to-r from-primary to-secondary rounded-full w-0" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-900">Global Supply Chain</span>
+                            <span class="text-primary">98%</span>
+                        </div>
+                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="progress-bar-fill h-full bg-gradient-to-r from-primary to-secondary rounded-full w-0" data-width="98%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-900">Strategic Negotiation</span>
+                            <span class="text-primary">90%</span>
+                        </div>
+                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="progress-bar-fill h-full bg-gradient-to-r from-primary to-secondary rounded-full w-0" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-900">ERP/SAP Data Analysis</span>
+                            <span class="text-primary">85%</span>
+                        </div>
+                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="progress-bar-fill h-full bg-gradient-to-r from-primary to-secondary rounded-full w-0" data-width="85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Tech Tags -->
+                <div class="reveal-blur flex items-center justify-center">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <span class="px-6 py-3 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-700 hover:border-primary hover:text-primary hover:-translate-y-1 transition-all cursor-default">Market Analysis</span>
+                        <span class="px-6 py-3 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-700 hover:border-secondary hover:text-secondary hover:-translate-y-1 transition-all cursor-default">Business Development</span>
+                        <span class="px-6 py-3 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-700 hover:border-emerald-500 hover:text-emerald-500 hover:-translate-y-1 transition-all cursor-default">Machine Learning APIs</span>
+                        <span class="px-6 py-3 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-700 hover:border-blue-500 hover:text-blue-500 hover:-translate-y-1 transition-all cursor-default">Cross-cultural Leadership</span>
+                        <span class="px-6 py-3 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-700 hover:border-purple-500 hover:text-purple-500 hover:-translate-y-1 transition-all cursor-default">Process Optimization</span>
+                        <span class="px-6 py-3 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-700 hover:border-primary hover:text-primary hover:-translate-y-1 transition-all cursor-default">Data Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心產品與技術解決方案 -->
+    <section class="py-24 relative bg-surface">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal-up">
+                <p class="text-sm font-bold tracking-widest text-primary uppercase mb-3">核心產品與技術解決方案</p>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">探索我在不同場景中實際落地的 AI 與數據產品</h2>
+                <p class="text-gray-600 text-lg">以下是四個可直接深入了解的專案與學習平台，涵蓋行銷數據、保險 AI、語音轉錄與賽事資料。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <a href="https://courses.taiwanmds.com/product/information?p=02c0c7b9ec7b11f0b3480242ac110002" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fa-solid fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">Vibe Coding：行銷數據分析學習圈</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">訂閱 Vibe Coding 行銷數據分析學習圈，跟著我們一起走入行銷數據分析與 vibe coding 自動化的世界。</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline">
+                        了解更多
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </a>
+
+                <a href="https://judgai.com/" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">保險機器人：當經驗成為奇點，AI更是保險未來的引擎</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">從經驗、法條到正確說明，奇點讓每位保險專業者擁有一位懂法的科技夥伴。</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline">
+                        前往網站
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </a>
+
+                <a href="https://judgai.com/saymind" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fa-solid fa-waveform text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">SayMind：一站式語音轉錄，AI 筆記整理，自動口條訓練</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">使用 LangChain 搭建的 RAG 系統，可上傳 PDF 並進行精準問答。</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline">
+                        觀看產品
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </a>
+
+                <a href="https://www.paobaodao.com/" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fa-solid fa-person-running text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">跑寶島：馬拉松路跑完整記錄</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">可以查詢所有馬拉松賽事。</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline">
+                        進入平台
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- External Dependencies / Community Links -->
+    <section class="py-24 relative bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-10 reveal-up">
+                <p class="text-sm font-bold tracking-widest text-primary uppercase mb-3">External Dependencies</p>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">多元社群圖示配置</h2>
+                <p class="text-gray-600 text-lg">以下以依賴庫樣式排列展示，方便快速進入你在不同平台的社群與內容入口。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <a href="https://aistudy.pse.is/linemdsgroup" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-14 h-14 rounded-2xl bg-[#06C755] text-white flex items-center justify-center mb-5 shadow-lg shadow-[#06C755]/20">
+                        <i class="fa-brands fa-line text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">LINE</h3>
+                    <p class="text-sm text-gray-500">進入 LINE 社群，取得最新動態與討論。</p>
+                </a>
+
+                <a href="https://www.facebook.com/MarketingDataScienceTMR/" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-14 h-14 rounded-2xl bg-[#1877F2] text-white flex items-center justify-center mb-5 shadow-lg shadow-[#1877F2]/20">
+                        <i class="fa-brands fa-facebook-f text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">Facebook</h3>
+                    <p class="text-sm text-gray-500">查看貼文與社群互動內容。</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/howardzhong/" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-14 h-14 rounded-2xl bg-[#0A66C2] text-white flex items-center justify-center mb-5 shadow-lg shadow-[#0A66C2]/20">
+                        <i class="fa-brands fa-linkedin-in text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">LinkedIn</h3>
+                    <p class="text-sm text-gray-500">探索專業履歷、內容與職涯動態。</p>
+                </a>
+
+                <a href="https://github.com/floweryeh9-create" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 reveal-up group block">
+                    <div class="w-14 h-14 rounded-2xl bg-gray-900 text-white flex items-center justify-center mb-5 shadow-lg shadow-gray-900/20">
+                        <i class="fa-brands fa-github text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-gray-900 mb-2">GitHub</h3>
+                    <p class="text-sm text-gray-500">查看程式與實作資源，追蹤最新專案。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form CTA -->
+    <section class="py-6 relative bg-surface">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="glass-panel rounded-[28px] p-8 md:p-10 border border-primary/10 reveal-up">
+                <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+                    <div>
+                        <p class="text-sm font-bold tracking-widest text-primary uppercase mb-3">填寫需求表單</p>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">讓我先了解你的需求</h2>
+                        <p class="text-gray-600 leading-relaxed mb-6">如果你希望我協助規劃 AI、行銷、資料分析或業務系統應用，歡迎直接填寫需求表單，我會依照你的需求與時間做進一步回覆。</p>
+                        <div class="flex flex-wrap gap-3 text-sm text-gray-500">
+                            <span class="inline-flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 快速了解需求</span>
+                            <span class="inline-flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 專案方向建議</span>
+                            <span class="inline-flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 可行性評估</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 rounded-2xl p-6 border border-gray-100 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-file-lines text-xl"></i>
+                        </div>
+                        <h3 class="font-display font-semibold text-xl text-gray-900 mb-3">直接開啟需求表單</h3>
+                        <p class="text-sm text-gray-600 mb-6">點擊下方按鈕，我們將立即帶你前往 Google Form，完成需求填寫。</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdu43VeTkTnksPCcvajbymNYbdi5vumcU-UlsnVPtLwCih1mA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-full text-white font-semibold bg-gray-900 hover:bg-primary transition-all duration-300 shadow-lg shadow-gray-900/20">
+                            填寫需求表單
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (High Trust, Premium) -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <!-- Deep soft gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-white to-blue-50/50 z-0"></div>
+        <div class="glow-bg glow-blue w-[800px] h-[800px] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 opacity-30"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center reveal-up">
+            <div class="w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center mx-auto mb-8 border border-gray-100">
+                <i class="ph-fill ph-chat-circle-text text-3xl text-gradient"></i>
+            </div>
+            
+            <h2 class="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6 tracking-tight">
+                Build Your AI-Driven <br>Business Future
+            </h2>
+            <p class="text-xl text-gray-600 mb-12 font-light">
+                Ready to transform your operations and scale globally with intelligent automation? Let's discuss your strategic roadmap.
+            </p>
+            
+            <!-- Link to Google Calendar -->
+            <a href="https://calendar.app.google/KPcjXv3GZpz86hGX8" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-3 px-10 py-5 rounded-full text-white font-semibold text-lg bg-gray-900 hover:bg-primary transition-all duration-300 shadow-2xl shadow-gray-900/20 hover:shadow-primary/30 hover:-translate-y-1">
+                Schedule a Consultation
+                <i class="ph-bold ph-calendar-plus"></i>
+            </a>
+            
+            <div class="mt-8 flex items-center justify-center gap-4 text-sm text-gray-500 font-medium">
+                <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle text-accent"></i> Highly Confidential</span>
+                <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle text-accent"></i> Global Expertise</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-flower-lotus text-primary text-2xl"></i>
+                <span class="font-display font-bold text-gray-900 tracking-tight">Flower.</span>
+            </div>
+            
+            <div class="text-sm text-gray-400">
+                &copy; <span id="year"></span> Flower Consulting. All rights reserved. Premium AI Executive Brand.
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                    <i class="ph-fill ph-linkedin-logo text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-900 hover:text-white transition-colors">
+                    <i class="ph-fill ph-envelope-simple text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core JavaScript -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. Sticky Navbar Blur Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/50', 'backdrop-blur-md', 'shadow-sm');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-white/50', 'backdrop-blur-md', 'shadow-sm');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // 2. Typewriter Effect (Hero Section)
+        const text = "Until Marketing Data science is common sense.";
+        const typewriterEl = document.getElementById('typewriter');
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                typewriterEl.innerHTML += text.charAt(i);
+                i++;
+                // Slight randomization for natural typing feel
+                setTimeout(typeWriter, Math.random() * 50 + 50); 
+            } else {
+                // Keep cursor blinking after typing finishes
+                setTimeout(() => {
+                    typewriterEl.classList.add('border-r-2', 'border-primary', 'animate-pulse');
+                    typewriterEl.classList.remove('cursor'); // remove custom CSS cursor
+                }, 500);
+            }
+        }
+        
+        // Start typewriter after a short delay
+        setTimeout(typeWriter, 500);
+
+        // 3. Scroll Reveal & Progress Bar Animation using Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Reveal elements
+                    if (entry.target.classList.contains('reveal-up') || entry.target.classList.contains('reveal-blur')) {
+                        entry.target.classList.add('reveal-active');
+                    }
+                    
+                    // Animate Progress Bars
+                    if (entry.target.classList.contains('progress-bar-fill')) {
+                        const targetWidth = entry.target.getAttribute('data-width');
+                        entry.target.style.width = targetWidth;
+                    }
+
+                    // Animate Counters
+                    if (entry.target.classList.contains('counter')) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        animateValue(entry.target, 0, target, 2000);
+                        entry.target.classList.remove('counter'); // Prevent re-animating
+                    }
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up, .reveal-blur, .progress-bar-fill, .counter').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Number Counter Animation Function
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // ease out cubic
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                obj.innerHTML = Math.floor(easeOut * (end - start) + start) + (end === 20 ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+    </script>
+</body>
+</html>
+
